@@ -12,7 +12,19 @@ type Directory struct {
 	Disabled bool   `yaml:"disabled"`
 }
 
+type Character struct {
+	Format   string `yaml:"format"`
+	Symbol   string `yaml:"symbol"`
+	Disabled bool   `yaml:"disabled"`
+}
+
 type GitBranch struct {
+	Format   string `yaml:"format"`
+	Symbol   string `yaml:"symbol"`
+	Disabled bool   `yaml:"disabled"`
+}
+
+type Time struct {
 	Format   string `yaml:"format"`
 	Symbol   string `yaml:"symbol"`
 	Disabled bool   `yaml:"disabled"`
@@ -20,7 +32,9 @@ type GitBranch struct {
 
 type Config struct {
 	Directory Directory `yaml:"directory"`
+	Character Character `yaml:"character"`
 	GitBranch GitBranch `yaml:"git_branch"`
+	Time      Time      `yaml:"time"`
 }
 
 func NewConfig() (Config, error) {

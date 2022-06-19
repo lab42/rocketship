@@ -1,29 +1,27 @@
 package modules
 
 import (
-	"os"
+	"fmt"
+	"time"
 
 	"github.com/lab42/rocketship/config"
 	"github.com/lab42/rocketship/formatter"
 )
 
-const DIRECTORY_MODULE = "directory"
+const TIME_MODULE = "time"
 
-func directory_module(config *config.Config) (string, error) {
-	if config.Directory.Disabled {
+func time_module(config *config.Config) (string, error) {
+	if config.Time.Disabled {
 		return "", nil
 	}
 
-	path, err := os.Getwd()
-	if err != nil {
-		return "", err
-	}
+	dateTime := time.Now()
 
 	formatter := formatter.NewFormatter(
-		DIRECTORY_MODULE,
+		TIME_MODULE,
 		config.Directory.Format,
 		map[string]string{
-			"path":   path,
+			"time":   fmt.Sprintf("%d:%d:%d", dateTime.Hour(), dateTime.Minute(), dateTime.Second()),
 			"symbol": config.Directory.Symbol,
 		},
 	)
@@ -33,7 +31,7 @@ func directory_module(config *config.Config) (string, error) {
 
 func init() {
 	AddModule(NewModule(
-		DIRECTORY_MODULE,
-		directory_module,
+		TIME_MODULE,
+		time_module,
 	))
 }

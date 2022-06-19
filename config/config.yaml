@@ -1,4 +1,18 @@
 directory:
-  format: "{{.symbol}}<fg=2196f3>{{.path}}</> "
-  symbol: ""
+  format: "[{{.symbol}}<fg=2196f3>{{.path}}</>]"
+  symbol: " "
+  disabled: false
+
+git_branch:
+  format: "[{{.symbol}}<fg=2196f3>{{.path}}</>]"
+  symbol: " "
+  disabled: false
+
+time:
+  format: "[{{.symbol}}<fg=2196f3>{{.time}}</>]"
+  symbol: " "
+  disabled: false
+
+character:
+  format: "<fg=2196f3></>"
   disabled: false
