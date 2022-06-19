@@ -10,7 +10,7 @@ import (
 
 const GOLANG_MODULE = "golang"
 
-func golang_module(config *config.Config) (string, error) {
+func Golang_module(config *config.Config) (string, error) {
 	if config.Golang.Disabled {
 		return "", nil
 	}
@@ -40,6 +40,6 @@ func golang_module(config *config.Config) (string, error) {
 func init() {
 	AddModule(NewModule(
 		GOLANG_MODULE,
-		golang_module,
+		Golang_module,
 	))
 }
