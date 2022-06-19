@@ -1,6 +1,8 @@
 package modules_test
 
 import (
+	"os"
+
 	"github.com/lab42/rocketship/config"
 	"github.com/lab42/rocketship/modules"
 	. "github.com/onsi/ginkgo/v2"
@@ -22,9 +24,10 @@ var _ = Describe("Golang", func() {
 			)
 		})
 		It("can execute module with config", func() {
+			os.Chdir("./../")
 			out, err := mod.Exec(&cfg)
 			Expect(err).To(BeNil())
-			Expect(out).Should(BeEmpty())
+			Expect(out).ShouldNot(BeEmpty())
 		})
 	})
 })
