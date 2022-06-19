@@ -1,0 +1,4 @@
+directory:
+  format: "{{.symbol}}<fg=2196f3>{{.path}}</> "
+  symbol: ""
+  disabled: false
