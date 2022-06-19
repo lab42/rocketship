@@ -22,7 +22,7 @@ import (
 // initCmd represents the init command
 var initCmd = &cobra.Command{
 	Use:   "init",
-	Short: "A brief description of your command",
+	Short: "Print shell functions to init Rocketship for shell.",
 }
 
 func init() {
