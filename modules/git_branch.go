@@ -11,7 +11,7 @@ import (
 
 const GIT_BRANCH_MODULE = "git_branch"
 
-func git_branch_module(config *config.Config) (string, error) {
+func Git_branch_module(config *config.Config) (string, error) {
 	if config.GitBranch.Disabled {
 		return "", nil
 	}
@@ -41,6 +41,6 @@ func git_branch_module(config *config.Config) (string, error) {
 func init() {
 	AddModule(NewModule(
 		GIT_BRANCH_MODULE,
-		git_branch_module,
+		Git_branch_module,
 	))
 }

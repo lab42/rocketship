@@ -11,7 +11,7 @@ import (
 
 const DIRECTORY_MODULE = "directory"
 
-func directory_module(config *config.Config) (string, error) {
+func Directory_module(config *config.Config) (string, error) {
 	if config.Directory.Disabled {
 		return "", nil
 	}
@@ -61,6 +61,6 @@ func directory_module(config *config.Config) (string, error) {
 func init() {
 	AddModule(NewModule(
 		DIRECTORY_MODULE,
-		directory_module,
+		Directory_module,
 	))
 }

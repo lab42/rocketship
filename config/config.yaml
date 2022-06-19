@@ -26,9 +26,9 @@ golang:
   disabled: false
 
 character:
-  format: " "
+  format: " "
   disabled: false
 
 continuation:
-  format: " "
+  format: " "
   disabled: false
