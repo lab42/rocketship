@@ -18,10 +18,10 @@ build: ## Build binaries
 build_all: build_linux build_darwin build_windows
 
 build_linux:
-	GOOS=linux GOARCH=amd64 go build -o dist/linux/rocketship
+	GOOS=linux GOARCH=amd64 go build -ldflags "-s -w" -o dist/linux/rocketship
 
 build_darwin:
-	GOOS=linux GOARCH=amd64 go build -o dist/darwin/rocketship
+	GOOS=linux GOARCH=amd64 go build -ldflags "-s -w" -o dist/darwin/rocketship
 
 build_windows:
-	GOOS=linux GOARCH=amd64 go build -o dist/windowd/rocketship.exe
+	GOOS=linux GOARCH=amd64 go build -ldflags "-s -w" -o dist/windowd/rocketship.exe

@@ -17,7 +17,11 @@ package cmd
 
 import (
 	"fmt"
+	"sync"
 
+	"github.com/lab42/rocketship/config"
+	"github.com/lab42/rocketship/formatter"
+	"github.com/lab42/rocketship/modules"
 	"github.com/spf13/cobra"
 )
 
@@ -25,11 +29,47 @@ func prompt(cmd *cobra.Command, args []string) {
 	continuation, _ := cmd.Flags().GetBool("continuation")
 
 	if continuation {
-		fmt.Println("true")
+		config, err := config.NewConfig()
+		cobra.CheckErr(err)
+
+		result, err := modules.Modules["continuation"].Exec(&config)
+		cobra.CheckErr(err)
+
+		fmt.Print(result)
 	}
 
 	if !continuation {
-		fmt.Println("false")
+		var data = make(map[string]string)
+
+		config, err := config.NewConfig()
+		cobra.CheckErr(err)
+
+		var wg sync.WaitGroup
+
+		for _, module := range modules.Modules {
+			wg.Add(1)
+			go func(module modules.Module, data map[string]string) {
+				defer wg.Done()
+				result, err := module.Exec(&config)
+				cobra.CheckErr(err)
+				data[module.Name] = result
+			}(*module, data)
+		}
+
+		wg.Wait()
+
+		data["line_break"] = "\n"
+
+		formatter := formatter.NewFormatter(
+			"cli_format",
+			config.Format,
+			data,
+		)
+
+		result, err := formatter.Render()
+		cobra.CheckErr(err)
+
+		fmt.Print(result)
 	}
 }
 

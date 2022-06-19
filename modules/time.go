@@ -19,10 +19,10 @@ func time_module(config *config.Config) (string, error) {
 
 	formatter := formatter.NewFormatter(
 		TIME_MODULE,
-		config.Directory.Format,
+		config.Time.Format,
 		map[string]string{
 			"time":   fmt.Sprintf("%d:%d:%d", dateTime.Hour(), dateTime.Minute(), dateTime.Second()),
-			"symbol": config.Directory.Symbol,
+			"symbol": config.Time.Symbol,
 		},
 	)
 

@@ -2,6 +2,7 @@ package modules
 
 import (
 	"os"
+	"strings"
 
 	"github.com/lab42/rocketship/config"
 	"github.com/lab42/rocketship/formatter"
@@ -14,6 +15,11 @@ func directory_module(config *config.Config) (string, error) {
 		return "", nil
 	}
 
+	homeDir, err := os.UserHomeDir()
+	if err != nil {
+		return "", err
+	}
+
 	path, err := os.Getwd()
 	if err != nil {
 		return "", err
@@ -23,7 +29,7 @@ func directory_module(config *config.Config) (string, error) {
 		DIRECTORY_MODULE,
 		config.Directory.Format,
 		map[string]string{
-			"path":   path,
+			"path":   strings.Replace(path, homeDir, "~", 1),
 			"symbol": config.Directory.Symbol,
 		},
 	)

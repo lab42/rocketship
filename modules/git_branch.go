@@ -14,7 +14,7 @@ func git_branch_module(config *config.Config) (string, error) {
 	}
 
 	repo, err := git.PlainOpen(".")
-	if err != git.ErrRepositoryNotExists {
+	if err != nil {
 		return "", err
 	}
 
@@ -25,10 +25,10 @@ func git_branch_module(config *config.Config) (string, error) {
 
 	formatter := formatter.NewFormatter(
 		GIT_BRANCH_MODULE,
-		config.Directory.Format,
+		config.GitBranch.Format,
 		map[string]string{
-			"git_branch": head.Name().String(),
-			"symbol":     config.Directory.Symbol,
+			"git_branch": head.Name().Short(),
+			"symbol":     config.GitBranch.Symbol,
 		},
 	)
 

@@ -9,7 +9,7 @@ import (
 
 var _ = Describe("Formatter", func() {
 	formatter := formatter.NewFormatter(
-		"Directory",
+		"directory",
 		"<fg=f44336>Hello</> {{.name}}",
 		map[string]string{"name": "rocketship"},
 	)
@@ -18,7 +18,7 @@ var _ = Describe("Formatter", func() {
 
 	Context("with formatter instance", func() {
 		It("name should be Directory", func() {
-			Expect(formatter.Name).To(Equal("Directory"))
+			Expect(formatter.Name).To(Equal("directory"))
 		})
 		It("output should be in color", func() {
 			Expect(result).To(Equal("\x1b[38;2;244;67;54mHello\x1b[0m rocketship"))

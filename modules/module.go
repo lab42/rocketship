@@ -2,15 +2,15 @@ package modules
 
 import "github.com/lab42/rocketship/config"
 
-var Modules []*Module
+var Modules = make(map[string]*Module)
 
 type Module struct {
 	Name string
 	Exec func(config *config.Config) (string, error)
 }
 
-func AddModule(m *Module) {
-	Modules = append(Modules, m)
+func AddModule(module *Module) {
+	Modules[module.Name] = module
 }
 
 func NewModule(name string, exec func(config *config.Config) (string, error)) *Module {

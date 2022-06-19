@@ -1,10 +1,17 @@
+format: "\
+  {{.directory}} \
+  {{.git_branch}} \
+  {{.golang}} \
+  {{.time}} \
+  {{.character}}"
+
 directory:
   format: "[{{.symbol}}<fg=2196f3>{{.path}}</>]"
   symbol: " "
   disabled: false
 
 git_branch:
-  format: "[{{.symbol}}<fg=2196f3>{{.path}}</>]"
+  format: "[{{.symbol}}<fg=2196f3>{{.git_branch}}</>]"
   symbol: " "
   disabled: false
 
@@ -13,6 +20,15 @@ time:
   symbol: " "
   disabled: false
 
+golang:
+  format: "[{{.symbol}}<fg=2196f3>v{{.version}}</>]"
+  symbol: " "
+  disabled: false
+
 character:
-  format: "<fg=2196f3></>"
+  format: ""
+  disabled: false
+
+continuation:
+  format: ""
   disabled: false
