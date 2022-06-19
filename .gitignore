@@ -23,6 +23,5 @@ go.work
 # Binaries
 dist
 rocketship
-
 # Editor
 .vscode
