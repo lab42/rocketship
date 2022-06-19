@@ -45,14 +45,20 @@ func prompt(cmd *cobra.Command, args []string) {
 		cobra.CheckErr(err)
 
 		var wg sync.WaitGroup
+		var mutex = &sync.Mutex{}
 
 		for _, module := range modules.Modules {
 			wg.Add(1)
 			go func(module modules.Module, data map[string]string) {
 				defer wg.Done()
+
 				result, err := module.Exec(&config)
 				cobra.CheckErr(err)
+
+				mutex.Lock()
 				data[module.Name] = result
+				mutex.Unlock()
+
 			}(*module, data)
 		}
 

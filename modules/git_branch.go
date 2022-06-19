@@ -1,7 +1,10 @@
 package modules
 
 import (
+	"strings"
+
 	"github.com/go-git/go-git/v5"
+	"github.com/go-git/go-git/v5/plumbing"
 	"github.com/lab42/rocketship/config"
 	"github.com/lab42/rocketship/formatter"
 )
@@ -15,19 +18,19 @@ func git_branch_module(config *config.Config) (string, error) {
 
 	repo, err := git.PlainOpen(".")
 	if err != nil {
-		return "", err
+		return "", nil
 	}
 
-	head, err := repo.Head()
+	ref, err := repo.Reference(plumbing.HEAD, false)
 	if err != nil {
-		return "", err
+		return "", nil
 	}
 
 	formatter := formatter.NewFormatter(
 		GIT_BRANCH_MODULE,
 		config.GitBranch.Format,
 		map[string]string{
-			"git_branch": head.Name().Short(),
+			"git_branch": strings.Split(ref.Target().String(), "refs/heads/")[1],
 			"symbol":     config.GitBranch.Symbol,
 		},
 	)

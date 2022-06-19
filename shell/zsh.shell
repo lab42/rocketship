@@ -1,2 +1,2 @@
-PROMPT=$()
-PROMPT2=$()
+PROMPT=$(rocketship prompt)
+PROMPT2=$(rocketship prompt --continuation)
