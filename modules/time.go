@@ -10,7 +10,7 @@ import (
 
 const TIME_MODULE = "time"
 
-func time_module(config *config.Config) (string, error) {
+func Time_module(config *config.Config) (string, error) {
 	if config.Time.Disabled {
 		return "", nil
 	}
@@ -32,6 +32,6 @@ func time_module(config *config.Config) (string, error) {
 func init() {
 	AddModule(NewModule(
 		TIME_MODULE,
-		time_module,
+		Time_module,
 	))
 }

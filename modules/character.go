@@ -7,7 +7,7 @@ import (
 
 const CHARACTER_MODULE = "character"
 
-func character_module(config *config.Config) (string, error) {
+func Character_module(config *config.Config) (string, error) {
 	if config.Character.Disabled {
 		return "", nil
 	}
@@ -24,6 +24,6 @@ func character_module(config *config.Config) (string, error) {
 func init() {
 	AddModule(NewModule(
 		CHARACTER_MODULE,
-		character_module,
+		Character_module,
 	))
 }

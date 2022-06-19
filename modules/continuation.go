@@ -7,7 +7,7 @@ import (
 
 const CONTINUATION_MODULE = "continuation"
 
-func continuation_module(config *config.Config) (string, error) {
+func Continuation_module(config *config.Config) (string, error) {
 	if config.Continuation.Disabled {
 		return "", nil
 	}
@@ -24,6 +24,6 @@ func continuation_module(config *config.Config) (string, error) {
 func init() {
 	AddModule(NewModule(
 		CONTINUATION_MODULE,
-		continuation_module,
+		Continuation_module,
 	))
 }
